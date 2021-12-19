@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body class="page">
+  <div class="page__box">
+    <header class="header">
+      <img class="logo" src="./images/header-logo.svg" alt="Логотип сервиса Mesto">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/image_avatar.jpg" alt="Фото пользователя" class="profile__avatar">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-btn" type="button" name="profileEditButton"></button>
+          <p class="profile__about">Исследователь океана</p>
+        </div>
+        <button class="profile__add-btn" type="button" name="profileAddButton"></button>
+      </section>
+
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="elements__item">
+            <img src="./images/karachaevsk.jpg" alt="Вид на Сентинский храм в Карачаево-Черкессии"
+              class="elements__image">
+            <div class="elements__description">
+              <h2 class="elements__title">Карачаево-Черкессия</h2>
+              <button class="elements__like elements__like_active"></button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img src="./images/elbrus.jpg" alt="Вид на гору Эльбрус" class="elements__image">
+            <div class="elements__description">
+              <h2 class="elements__title">Гора Эльбрус</h2>
+              <button class="elements__like elements__like_active"></button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img src="./images/dombay.jpg" alt="Вид на Домбайский хребет" class="elements__image">
+            <div class="elements__description">
+              <h2 class="elements__title">Домбай</h2>
+              <button class="elements__like elements__like_active"></button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img src="./images/philipp-trubchenko-08lvM7w-G30-unsplash.jpg" alt="Вид на заледенелое озеро Байкал"
+              class="elements__image">
+            <div class="elements__description">
+              <h2 class="elements__title">Озеро Байкал</h2>
+              <button class="elements__like elements__like_active"></button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img src="./images/evgenia-beletskaya-sE2HOUudmjU-unsplash.jpg" alt="Вид на реку Катунь"
+              class="elements__image">
+            <div class="elements__description">
+              <h2 class="elements__title">Алтай</h2>
+              <button class="elements__like elements__like_active"></button>
+            </div>
+          </li>
+
+          <li class="elements__item">
+            <img src="./images/Stolby.jpg" alt="Скала Дед - одна из вершин Красноярских столбов"
+              class="elements__image">
+            <div class="elements__description">
+              <h2 class="elements__title">Красноярские столбы</h2>
+              <button class="elements__like elements__like_active"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+  </div>
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-btn" type="button" name="popupCloseButton"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__form" name="popup">
+        <input type="text" placeholder=" Ваше  имя" class="popup__input-text popup__input-text_name" minlength="3"
+          maxlength="40">
+        <input type="text" placeholder=" О себе" class="popup__input-text popup__input-text_about" minlength="3"
+          maxlength="40">
+        <button type="submit" class="popup__submit-btn" name="popupSubmitButton">
+          Сохранить
+        </button>
+      </form>
+    </div>
+  </div>
+  <script src="./pages/index.js"></script>
+</body>
+
+</html>

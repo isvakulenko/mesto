@@ -8,12 +8,12 @@
 
 @media screen and (max-width: 890px) {
   .footer {
-  padding: 0 19px;
+    padding: 0 19px;
   }
 }
 @media screen and (max-width: 660px) {
   .footer {
-  font-size: 14px;
-  line-height: 17px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

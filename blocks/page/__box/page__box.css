@@ -9,11 +9,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
- /* * {
+  /* * {
   outline: 1px solid red;
-}  */
+} */
 
 @media screen and (max-width: 890px) {
   .page__box {

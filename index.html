@@ -18,63 +18,63 @@
         <img src="./images/image_avatar.jpg" alt="Фото пользователя" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-btn" type="button" name="profileEditButton"></button>
+          <button class="profile__edit-btn" type="button" name="profileEditButton"
+            aria-label="Редактировать профиль"></button>
           <p class="profile__about">Исследователь океана</p>
         </div>
-        <button class="profile__add-btn" type="button" name="profileAddButton"></button>
+        <button class="profile__add-btn" type="button" name="profileAddButton" aria-label="Добавить фото"></button>
       </section>
 
-      <section class="elements">
-        <ul class="elements__list">
-          <li class="elements__item">
+      <section class="cards">
+        <ul class="elements">
+          <li class="element">
             <img src="./images/karachaevsk.jpg" alt="Вид на Сентинский храм в Карачаево-Черкессии"
-              class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Карачаево-Черкессия</h2>
-              <button class="elements__like elements__like_active"></button>
+              class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Карачаево-Черкессия</h2>
+              <button class="element__like element__like_active" aria-label="Нравится" aria-label="Нравится"></button>
             </div>
           </li>
 
-          <li class="elements__item">
-            <img src="./images/elbrus.jpg" alt="Вид на гору Эльбрус" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button class="elements__like elements__like_active"></button>
+          <li class="element">
+            <img src="./images/elbrus.jpg" alt="Вид на гору Эльбрус" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Гора Эльбрус</h2>
+              <button class="element__like element__like_active" aria-label="Нравится"></button>
             </div>
           </li>
 
-          <li class="elements__item">
-            <img src="./images/dombay.jpg" alt="Вид на Домбайский хребет" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Домбай</h2>
-              <button class="elements__like elements__like_active"></button>
+          <li class="element">
+            <img src="./images/dombay.jpg" alt="Вид на Домбайский хребет" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Домбай</h2>
+              <button class="element__like element__like_active" aria-label="Нравится"></button>
             </div>
           </li>
 
-          <li class="elements__item">
+          <li class="element">
             <img src="./images/philipp-trubchenko-08lvM7w-G30-unsplash.jpg" alt="Вид на заледенелое озеро Байкал"
-              class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Озеро Байкал</h2>
-              <button class="elements__like elements__like_active"></button>
+              class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Озеро Байкал</h2>
+              <button class="element__like element__like_active" aria-label="Нравится"></button>
             </div>
           </li>
 
-          <li class="elements__item">
+          <li class="element">
             <img src="./images/evgenia-beletskaya-sE2HOUudmjU-unsplash.jpg" alt="Вид на реку Катунь"
-              class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Алтай</h2>
-              <button class="elements__like elements__like_active"></button>
+              class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Алтай</h2>
+              <button class="element__like element__like_active" aria-label="Нравится"></button>
             </div>
           </li>
 
-          <li class="elements__item">
-            <img src="./images/Stolby.jpg" alt="Скала Дед - одна из вершин Красноярских столбов"
-              class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Красноярские столбы</h2>
-              <button class="elements__like elements__like_active"></button>
+          <li class="element">
+            <img src="./images/Stolby.jpg" alt="Скала Дед - одна из вершин Красноярских столбов" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Красноярские столбы</h2>
+              <button class="element__like element__like_active" aria-label="Нравится"></button>
             </div>
           </li>
         </ul>
@@ -86,14 +86,14 @@
   </div>
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close-btn" type="button" name="popupCloseButton"></button>
+      <button class="popup__close-btn" type="button" name="popupCloseButton" aria-label="Закрыть окно"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" name="popup">
-        <input type="text" placeholder=" Ваше  имя" class="popup__input-text popup__input-text_name" minlength="3"
+        <input type="text" placeholder=" Ваше  имя" class="popup__input popup__input-name_username" minlength="3"
           maxlength="40">
-        <input type="text" placeholder=" О себе" class="popup__input-text popup__input-text_about" minlength="3"
+        <input type="text" placeholder=" О себе" class="popup__input popup__input-name_about" minlength="3"
           maxlength="40">
-        <button type="submit" class="popup__submit-btn" name="popupSubmitButton">
+        <button type="submit" class="popup__submit-btn" name="popupSubmitButton" aria-label="Сохранить">
           Сохранить
         </button>
       </form>

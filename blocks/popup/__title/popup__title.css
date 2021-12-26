@@ -1,9 +1,8 @@
 .popup__title {
-  margin: 34px 64px 54px 32px;
+  margin: 34px 64px 54px 36px;
   padding: 0;
   max-width: 330px;
   width: 100%;
-  font-family: Inter;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -12,11 +11,18 @@
 
 @media screen and (max-width: 660px) {
   .popup__title {
+<<<<<<< HEAD
   margin: 25px auto 75px;
   padding: 0;
   max-width: 238px;
   width: 100%;
   font-size: 18px;
   line-height: 22px;
+=======
+    margin: 25px auto 75px;
+    max-width: 238px;
+    font-size: 18px;
+    line-height: 22px;
+>>>>>>> gh-pages
   }
 }

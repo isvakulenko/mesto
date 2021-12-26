@@ -1,5 +1,0 @@
-.elements__like_active:focus {
-background-image: url(../../../../images/like_bl.svg);
-opacity: 1;
-transition: .5s;
-}

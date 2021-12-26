@@ -11,18 +11,9 @@
 
 @media screen and (max-width: 660px) {
   .popup__title {
-<<<<<<< HEAD
-  margin: 25px auto 75px;
-  padding: 0;
-  max-width: 238px;
-  width: 100%;
-  font-size: 18px;
-  line-height: 22px;
-=======
     margin: 25px auto 75px;
     max-width: 238px;
     font-size: 18px;
     line-height: 22px;
->>>>>>> gh-pages
   }
 }

@@ -4,8 +4,8 @@ const profileAbout = document.querySelector('.profile__about');
 const popup = document.querySelector('.popup');
 const popupCloseButton = popup.querySelector('.popup__close-btn');
 const formElement = popup.querySelector('.popup__container');
-const nameInput = popup.querySelector('.popup__input-name_username');
-const aboutInput = popup.querySelector('.popup__input-name_about');
+const nameInput = popup.querySelector('.popup__input_name_username');
+const aboutInput = popup.querySelector('.popup__input_name_about');
 
 
 // Открываем форму для редактирования, подтягиваем в формы для ввода существующие данные

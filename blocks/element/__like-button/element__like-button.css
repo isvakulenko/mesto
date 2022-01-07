@@ -1,4 +1,4 @@
-.element__like {
+.element__like-button {
   margin: 0;
   padding: 0;
   width: 22px;
@@ -10,7 +10,8 @@
   background-position: center;
   border: none;
 }
-.element__like:hover {
+.element__like-button:hover {
   cursor: pointer;
   opacity: .5;
+  transition: .5s;
 }

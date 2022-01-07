@@ -27,56 +27,6 @@
 
       <section class="cards">
         <ul class="cards__elements">
-          <li class="element">
-            <img src="./images/karachaevsk.jpg" alt="Вид на Сентинский храм в Карачаево-Черкессии"
-              class="element__image">
-            <div class="element__description">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
-              <button class="element__like element__like_active" aria-label="Нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img src="./images/elbrus.jpg" alt="Вид на гору Эльбрус" class="element__image">
-            <div class="element__description">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like element__like_active" aria-label="Нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img src="./images/dombay.jpg" alt="Вид на Домбайский хребет" class="element__image">
-            <div class="element__description">
-              <h2 class="element__title">Домбай</h2>
-              <button class="element__like element__like_active" aria-label="Нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img src="./images/philipp-trubchenko-08lvM7w-G30-unsplash.jpg" alt="Вид на заледенелое озеро Байкал"
-              class="element__image">
-            <div class="element__description">
-              <h2 class="element__title">Озеро Байкал</h2>
-              <button class="element__like element__like_active" aria-label="Нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img src="./images/evgenia-beletskaya-sE2HOUudmjU-unsplash.jpg" alt="Вид на реку Катунь"
-              class="element__image">
-            <div class="element__description">
-              <h2 class="element__title">Алтай</h2>
-              <button class="element__like element__like_active" aria-label="Нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img src="./images/Stolby.jpg" alt="Скала Дед - одна из вершин Красноярских столбов" class="element__image">
-            <div class="element__description">
-              <h2 class="element__title">Красноярские столбы</h2>
-              <button class="element__like element__like_active" aria-label="Нравится"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -84,21 +34,53 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
+  <div class="popup popup_type_edit">
     <div class="popup__container">
-      <button class="popup__close-btn" type="button" name="popupCloseButton" aria-label="Закрыть окно"></button>
+      <button class="popup__close-btn" type="button" name="editCloseButton" aria-label="Закрыть окно"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" name="popup">
-        <input type="text" placeholder=" Ваше  имя" class="popup__input popup__input_name_username" minlength="3"
-          maxlength="40">
-        <input type="text" placeholder=" О себе" class="popup__input popup__input_name_about" minlength="3"
-          maxlength="40">
-        <button type="submit" class="popup__submit-btn" name="popupSubmitButton" aria-label="Сохранить">
+        <input type="text" placeholder=" Ваше имя" name="name" class="popup__input popup__input_type_username"
+          minlength="3" maxlength="40">
+        <input type="text" placeholder=" О себе" name="description" class="popup__input popup__input_type_description"
+          minlength="3" maxlength="40">
+        <button type="submit" class="popup__submit-btn" name="editSubmitButton" aria-label="Сохранить">
           Сохранить
         </button>
       </form>
     </div>
   </div>
+  <div class="popup popup_type_add-card">
+    <div class="popup__container">
+      <button class="popup__close-btn" type="button" name="addCardCloseButton" aria-label="Закрыть окно"></button>
+      <h3 class="popup__title">Новое место</h3>
+      <form class="popup__form popup__form_add-card" name="popup">
+        <input type="text" placeholder=" Название" name="name" class="popup__input popup__input_type_card-name"
+          minlength="3" maxlength="40">
+        <input type="text" placeholder=" Ссылка на картинку" name="link"
+          class="popup__input popup__input_type_card-link" minlength="3" maxlength="400">
+        <button type="submit" class="popup__submit-btn" name="addCardSubmitButton" aria-label="Сохранить">
+          Создать
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_image">
+    <figure class="popup__figure">
+      <button class="popup__close-btn" type="button" name="imageModalCloseButton" aria-label="Закрыть окно"></button>
+      <img class="popup__figure-image" src="">
+      <figcaption class="popup__figure-caption"></figcaption>
+    </figure>
+  </div>
+  <template class="cards-template">
+    <li class="element">
+      <button class="element__delete-button" aria-label="Удалить"></button>
+      <img src="" alt="" class="element__image">
+      <div class="element__description">
+        <h2 class="element__title"></h2>
+        <button class="element__like-button" aria-label="Нравится"></button>
+      </div>
+    </li>
+  </template>
   <script src="./pages/index.js"></script>
 </body>
 

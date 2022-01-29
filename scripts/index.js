@@ -5,10 +5,7 @@ const imageModal = document.querySelector('.popup_type_image');
 
 //Кнопки
 const editProfileButton = document.querySelector('.profile__edit-btn');
-const closeEditModalButton = editModal.querySelector('.popup__close-btn');
 const addCardButton = document.querySelector('.profile__add-btn');
-const closeAddCardModalButton = addCardModal.querySelector('.popup__close-btn');
-const imageModalCloseButton = imageModal.querySelector('.popup__close-btn');
 
 //Информация из профиля
 const profileName = document.querySelector('.profile__name');
@@ -37,7 +34,6 @@ const imageModalFigureImage = imageModal.querySelector('.popup__figure-image');
 const imageModalFigureCaption = imageModal.querySelector('.popup__figure-caption');
 
 //Массив с фото перенесен в файл cards.js
-
 
 //Функция создания новой карточки
 
@@ -88,14 +84,12 @@ function viewImageModal(image, caption) {
 function openPopup(modal) {
   modal.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
-  document.addEventListener('mousedown', closeOnOverlay);
 };
 
 // Функция, закрывающая модальные окна
 function closePopup(modal) {
   modal.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
-  document.removeEventListener('mousedown', closeOnOverlay);
   };
 
 // Функция, закрывающая модальные окна по клавише Escape
@@ -104,17 +98,6 @@ function closeByEscape(evt) {
     const openedPopup = document.querySelector('.popup_opened')
     closePopup(openedPopup);
   }
-};
-
-function closeOnOverlay(evt) {
-  const popups = document.querySelectorAll('.popup');
-  popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup_opened')) {
-        closePopup(popup)
-      }
-    })
-  })
 };
 
 // Функция, удаляющая карточку
@@ -127,19 +110,29 @@ function likeHandler(evt) {
   evt.target.classList.toggle('element__like-button_active')
 };
 
-
 // Открываем форму для редактирования, подтягиваем в формы для ввода существующие данные
 editProfileButton.addEventListener('click', () => {
   inputProfileName.value = profileName.textContent;
   inputProfileDescription.value = profileAbout.textContent;
   openPopup(editModal);
-  toggleButton(editForm, {submitButtonSelector: '.popup__submit-btn', inactiveButtonClass: 'popup__submit-btn_disabled'})
+  toggleButton(editForm, { submitButtonSelector: '.popup__submit-btn', inactiveButtonClass: 'popup__submit-btn_disabled' })
 }
 );
 
-// При нажатии на крестик окне редактирования
-closeEditModalButton.addEventListener('click', () => closePopup(editModal));
+//Объединим события закрытия popup по нажатию на крестик и нажатию запределами окна - область overlay
+//Находим все попапы в проекте и пробегаемся по ним, навешивая обработчик.
 
+const popups = document.querySelectorAll('.popup')
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup)
+    }
+  })
+})
 
 // При нажатии кнопки добавления
 addCardButton.addEventListener('click', () => {
@@ -147,13 +140,6 @@ addCardButton.addEventListener('click', () => {
   openPopup(addCardModal);
   toggleButton(addCardForm, { submitButtonSelector: '.popup__submit-btn', inactiveButtonClass: 'popup__submit-btn_disabled' })
 });
-
-// При нажатии на крестик в окне добавления фото
-closeAddCardModalButton.addEventListener('click', () => closePopup(addCardModal));
-
-// При нажатии на крестик в модальном окне изображения
-imageModalCloseButton.addEventListener('click', () => closePopup(imageModal));
-
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 editForm.addEventListener('submit', (evt) => {

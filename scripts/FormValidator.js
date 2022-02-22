@@ -6,7 +6,6 @@ export class FormValidator {
     this._form = form;
     this._inputLists = this._form.querySelectorAll(this._settings.inputListSelector);
     this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector);
-
   }
 
   _showError(inputElement) {
@@ -45,6 +44,14 @@ export class FormValidator {
       this._buttonElement.classList.add(inactiveButtonClass);
       this._buttonElement.disabled = true;
     }
+  }
+
+  //метод для очистки ошибок и управления кнопкой
+  resetValidation() {
+    this.toggleButton(); //управляем кнопкой ==
+    this._inputLists.forEach((inputElement) => {
+      this._hideError(inputElement) //очищаем ошибки ==
+    });
   }
 
   _setEventListeners() {

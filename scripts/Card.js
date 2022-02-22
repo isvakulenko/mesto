@@ -1,11 +1,10 @@
-import { openPopup, imageModal, imageModalFigureImage, imageModalFigureCaption } from "./index.js"
-
 
 export class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data, cardTemplateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._template = document.querySelector(cardTemplateSelector).content;
+    this._handleCardClick = handleCardClick;
   }
   // Функция, ставящая лайк
   _likeHandler = (evt) => {
@@ -17,14 +16,6 @@ export class Card {
     evt.target.closest('.element').remove()
   };
 
-  // Функция откроет изображение в отдельном окне
-  _viewImageModal = () => {
-    imageModalFigureImage.src = this._link;
-    imageModalFigureImage.alt = this._name;
-    imageModalFigureCaption.textContent = this._name;
-    openPopup(imageModal);
-  }
-
   //Установим слушатели событий
   _setEventListeners() {
     // При нажатии на корзину - удаление карточки
@@ -34,11 +25,14 @@ export class Card {
     this._likeButton.addEventListener('click', this._likeHandler);
 
     // При нажатии на картинку, она откроется в новом модальном окне
-    this._cardImage.addEventListener('click', this._viewImageModal);
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link)
+    });
   }
 
+
   //Функция создания новой карточки
-  createCard() {
+  getCardElement() {
     const cardElement = this._template.cloneNode(true);
     //Поиск элементов
     this._cardImage = cardElement.querySelector('.element__image');
@@ -55,7 +49,6 @@ export class Card {
 
     return cardElement;
   };
-
 
 };
 

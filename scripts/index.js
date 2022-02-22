@@ -6,7 +6,7 @@ import { initialCards } from "./constants.js";
 //Модальные окна
 const editModal = document.querySelector('.popup_type_edit');
 const addCardModal = document.querySelector('.popup_type_add-card');
-export const imageModal = document.querySelector('.popup_type_image');
+const imageModal = document.querySelector('.popup_type_image');
 
 //Кнопки
 const editProfileButton = document.querySelector('.profile__edit-btn');
@@ -34,34 +34,36 @@ const inputProfileDescription = document.querySelector('.popup__input_type_descr
 const inputCardName = document.querySelector('.popup__input_type_card-name');
 const inputCardLink = document.querySelector('.popup__input_type_card-link');
 
-
-
 // Изображение и подпись для модального окна с фото
-export const imageModalFigureImage = imageModal.querySelector('.popup__figure-image');
-export const imageModalFigureCaption = imageModal.querySelector('.popup__figure-caption');
+ const imageModalFigureImage = imageModal.querySelector('.popup__figure-image');
+ const imageModalFigureCaption = imageModal.querySelector('.popup__figure-caption');
 
 //Массив с фото перенесен в файл constants.js
 
 //Функция создания новой карточки
 
+function createCard(item) {
+  const card = new Card(item, '.cards-template', handleCardClick);
+  const cardElement = card.getCardElement();
+  return cardElement;
+}
+
 //Функция добавит созданную карточку в начало списка
-function addCard(cardElement) {
-  list.prepend(cardElement);
+function addCard(item) {
+  list.prepend(createCard(item));
 }
 
 //*************При первоначальном запуске страницы****************
 // К каждому элементу массива создадим экземпляр класса с карточкой
 
-
 initialCards.forEach((item) => {
-  const card = new Card(item, '.cards-template')
-  addCard(card.createCard());
+  addCard(item);
 });
 
 //****************************************************************
 
 //Функция, открывающая модальные окна
-export function openPopup(modal) {
+ function openPopup(modal) {
   modal.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
 };
@@ -80,13 +82,12 @@ function closeByEscape(evt) {
   }
 };
 
-
 // Открываем форму для редактирования, подтягиваем в формы для ввода существующие данные
 editProfileButton.addEventListener('click', () => {
   inputProfileName.value = profileName.textContent;
   inputProfileDescription.value = profileAbout.textContent;
   openPopup(editModal);
-  editFormValidator.toggleButton();
+  formValidators['popup_edit'].resetValidation();
 }
 );
 
@@ -109,7 +110,8 @@ popups.forEach((popup) => {
 addCardButton.addEventListener('click', () => {
   addCardForm.reset();
   openPopup(addCardModal);
-  addCardFormValidator.toggleButton();
+  //addCardFormValidator.resetValidation();
+  formValidators['popup_add_card'].resetValidation()
 });
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -128,10 +130,17 @@ addCardForm.addEventListener('submit', (evt) => {
     name: inputCardName.value,
     link: inputCardLink.value
   }
-  const card = new Card(fotoObj, '.cards-template')
-  addCard(card.createCard());
+  addCard(fotoObj);
   closePopup(addCardModal);
 });
+
+//Для отказа от импорта в файлы классов переменных, применим "мягкое связывание"
+function handleCardClick(name, link) {
+  imageModalFigureImage.src = link;
+  imageModalFigureImage.alt = name;
+  imageModalFigureCaption.textContent = name;
+  openPopup(imageModal);
+}
 
 //Настройки для проверки элементов форм
 
@@ -146,8 +155,28 @@ const ValidationConfig = {
 
 //Создадим экземпляр класса для проверки данных каждой формы
 
-const editFormValidator = new FormValidator(ValidationConfig, editForm);
-const addCardFormValidator = new FormValidator(ValidationConfig, addCardForm);
+// const editFormValidator = new FormValidator(ValidationConfig, editForm);
+// const addCardFormValidator = new FormValidator(ValidationConfig, addCardForm);
 
-editFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
+// editFormValidator.enableValidation();
+// addCardFormValidator.enableValidation();
+
+
+// //Cоздадим экземпляры валидаторов всех форм (универсальный способ)
+const formValidators = {}
+
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+    // получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+    // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(ValidationConfig);
+

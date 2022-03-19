@@ -1,3 +1,4 @@
+//класс настраивает валидацию полей формы
 export class FormValidator {
   constructor(settings, form) {
     this._settings = settings;

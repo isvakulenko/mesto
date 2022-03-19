@@ -25,3 +25,10 @@ export const initialCards = [
   }
 ];
 
+
+
+//селектор списка карточек
+export const cardListSelector = '.cards__elements';
+//селектор Popup
+export const popupSelector = '.popup'
+

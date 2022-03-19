@@ -1,4 +1,4 @@
-
+//класс создаёт карточку с текстом и ссылкой на изображение:
 export class Card {
   constructor(data, cardTemplateSelector, handleCardClick) {
     this._name = data.name;

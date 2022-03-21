@@ -17,6 +17,7 @@
 !Update. В восьмой работе распространили методы ООП на разметку карточек и создание всплывающих окон. Итоговый
 проект собран при помощи Webpack.
 
+
 **Github Page**
 
 * [Ссылка на проект на Github Pages](https://isvakulenko.github.io/mesto/index.html)

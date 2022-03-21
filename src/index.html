@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+  <title>Mesto</title>
+</head>
+
+<body class="page">
+  <div class="page__box">
+    <header class="header">
+
+    <img class="logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип сервиса Mesto">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="<%=require('./images/image_avatar.jpg')%>" alt="Фото пользователя" class="profile__avatar">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-btn" type="button" name="profileEditButton"
+            aria-label="Редактировать профиль"></button>
+          <p class="profile__about">Исследователь океана</p>
+        </div>
+        <button class="profile__add-btn" type="button" name="profileAddButton" aria-label="Добавить фото"></button>
+      </section>
+
+      <section class="cards">
+        <ul class="cards__elements">
+            <!-- Контейнер для добавления карточек -->
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+  </div>
+  <div class="popup popup_type_edit">
+    <div class="popup__container">
+      <button class="popup__close-btn popup__close" type="button" name="editCloseButton" aria-label="Закрыть окно"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__form" name="popup_edit" novalidate >
+        <input type="text" id="name" name="name" class="popup__input popup__input_type_username"
+          minlength="2" maxlength="40" required>
+          <span id="error-name" class="popup__error"></span>
+        <input type="text" id="description" name="description" class="popup__input popup__input_type_description"
+          minlength="2" maxlength="200" required>
+          <span id="error-description" class="popup__error"></span>
+        <button type="submit" class="popup__submit-btn" name="editSubmitButton" aria-label="Сохранить">
+          Сохранить
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_add-card">
+    <div class="popup__container">
+      <button class="popup__close-btn popup__close" type="button" name="addCardCloseButton" aria-label="Закрыть окно"></button>
+      <h3 class="popup__title">Новое место</h3>
+      <form class="popup__form popup__form_add-card" name="popup_add_card" novalidate>
+        <input type="text" id="title" placeholder=" Название" name="title" class="popup__input popup__input_type_card-name"
+          minlength="2" maxlength="30" required>
+          <span id="error-title" class="popup__error"></span>
+        <input type="url" id="link" placeholder=" Ссылка на картинку" name="link"
+          class="popup__input popup__input_type_card-link" required>
+          <span id="error-link" class="popup__error"></span>
+        <button type="submit" class="popup__submit-btn" name="addCardSubmitButton" aria-label="Сохранить">
+          Создать
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_image">
+    <figure class="popup__figure">
+      <button class="popup__close-btn popup__close" type="button" name="imageModalCloseButton" aria-label="Закрыть окно"></button>
+      <img class="popup__figure-image">
+      <figcaption class="popup__figure-caption"></figcaption>
+    </figure>
+  </div>
+  <!--Шаблон карточки-->
+  <template class="cards-template">
+    <li class="element">
+      <button class="element__delete-button" aria-label="Удалить"></button>
+      <img class="element__image">
+      <div class="element__description">
+        <h2 class="element__title"></h2>
+        <button class="element__like-button" aria-label="Нравится"></button>
+      </div>
+    </li>
+  </template>
+  <!-- <script type="module" src="./pages/index.js"></script>
+  <script type="module" src="./components/Card.js"></script>
+  <script type="module" src="./components/FormValidator.js"></script>
+  <script type="module" src="./components/Section.js"></script>
+  <script type="module" src="./components/Popup.js"></script>
+  <script type="module" src="./utils/constants.js"></script> -->
+</body>
+</html>

@@ -5,6 +5,7 @@ import { Card } from "../components/Card.js"
 import { FormValidator } from "../components/FormValidator.js";
 import {
   initialCards,
+  validationConfig
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -15,40 +16,22 @@ import UserInfo from "../components/UserInfo.js";
 //Модальные окна
 const editModal = document.querySelector('.popup_type_edit');
 const addCardModal = document.querySelector('.popup_type_add-card');
-//const imageModal = document.querySelector('.popup_type_image');
 
 //Кнопки
 const editProfileButton = document.querySelector('.profile__edit-btn');
 const addCardButton = document.querySelector('.profile__add-btn');
 
-//Информация из профиля
-const profileName = document.querySelector('.profile__name');
-const profileAbout = document.querySelector('.profile__about');
-
 //Формы
-const editForm = editModal.querySelector('.popup__form');
 const addCardForm = addCardModal.querySelector('.popup__form');
-
-//Формируем список карточек в список
-const list = document.querySelector('.cards__elements');
-
-// Шаблон под карточку
-const cardTemplate = document.querySelector('.cards-template').content;
 
 // Поля ввода форм редактирования профиля
 const inputProfileName = document.querySelector('.popup__input_type_username');
 const inputProfileDescription = document.querySelector('.popup__input_type_description');
 
-// Поля ввода форм добавления карточки
-const inputCardName = document.querySelector('.popup__input_type_card-name');
-const inputCardLink = document.querySelector('.popup__input_type_card-link');
-
-
 //селектор списка карточек
 const cardListSelector = '.cards__elements';
-//селектор Popup
-const popupSelector = '.popup'
 
+//Соберем со страницы информацию о пользователе
 const userInfo = new UserInfo ({profileNameSelector:'.profile__name', profileAboutSelector:'.profile__about'})
 
 
@@ -89,7 +72,6 @@ const {name, job} = userInfo.getUserInfo();
 
   // Добавление новой карточки
  const handleCardFormSubmit =  (data) => {
-    //evt.preventDefault();
     // Создадим объект под новое фото
     const card = createCard({
       name: data.title,
@@ -97,7 +79,6 @@ const {name, job} = userInfo.getUserInfo();
     })
     cardList.addItem(card)
     addCardPopup.close();
-    console.log(data)
 };
 
 const imagePopup = new PopupWithImage('.popup_type_image')
@@ -112,7 +93,6 @@ addCardPopup.setEventListeners();
 addCardButton.addEventListener('click', () => {
   addCardForm.reset();
   addCardPopup.open();
-  //addCardFormValidator.resetValidation();
   formValidators['popup_add_card'].resetValidation()
 });
 
@@ -120,25 +100,6 @@ addCardButton.addEventListener('click', () => {
 function  handleCardClick (name, link) {
   imagePopup.open(name, link) ;
 }
-//Настройки для проверки элементов форм
-
-const ValidationConfig = {
-  formSelector: '.popup__form',
-  inputListSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-btn',
-  inactiveButtonClass: 'popup__submit-btn_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-};
-
-//Создадим экземпляр класса для проверки данных каждой формы
-
-// const editFormValidator = new FormValidator(ValidationConfig, editForm);
-// const addCardFormValidator = new FormValidator(ValidationConfig, addCardForm);
-
-// editFormValidator.enableValidation();
-// addCardFormValidator.enableValidation();
-
 
 // //Cоздадим экземпляры валидаторов всех форм (универсальный способ)
 const formValidators = {}
@@ -156,5 +117,5 @@ const enableValidation = (config) => {
   });
 };
 
-enableValidation(ValidationConfig);
+enableValidation(validationConfig);
 

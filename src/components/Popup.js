@@ -6,11 +6,11 @@ export default class Popup {
   // методы open и close отвечают за открытие и закрытие попапа.
   open() {
     this._popup.classList.add('popup_opened');
-    this._popup.addEventListener('keydown', this._handleEscClose);
+    document.addEventListener('keydown', this._handleEscClose);
   };
   close() {
     this._popup.classList.remove('popup_opened');
-    this._popup.removeEventListener('keydown', this._handleEscClose);
+    document.removeEventListener('keydown', this._handleEscClose);
   };
   // метод содержит логику закрытия попапа клавишей Esc
   _handleEscClose = (evt) => {
@@ -23,11 +23,9 @@ export default class Popup {
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_opened')) {
         this.close();
-        console.log('popup__close');
       }
       if (evt.target.classList.contains('popup__close')) {
         this.close();
-        console.log('popup__close');
       }
     })
   }

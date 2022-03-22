@@ -6,4 +6,10 @@
   height: 282px;
   object-fit: cover;
   max-width: 100%;
+ }
+
+.element__image:hover {
+  cursor: pointer;
+  /* opacity: .6;
+  transition: .5s; */
 }

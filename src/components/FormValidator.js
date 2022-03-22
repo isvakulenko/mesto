@@ -65,6 +65,6 @@ export class FormValidator {
     )
   };
   enableValidation() {
-    this._form.addEventListener('submit', this._setEventListeners())
+       this._setEventListeners()
   }
 }

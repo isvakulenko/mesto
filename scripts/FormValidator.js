@@ -42,7 +42,7 @@ export class FormValidator {
       this._buttonElement.classList.remove(inactiveButtonClass);
       this._buttonElement.disabled = false;
     } else {
-      this._buttonElement.classList.add(inactiveButtonClass);
+      this._buttonElement.ist.add(inactiveButtonClass);
       this._buttonElement.disabled = true;
     }
   }

@@ -11,6 +11,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import { Api } from '../components/Api.js';
 
 
 //Модальные окна
@@ -36,6 +37,15 @@ const userInfo = new UserInfo ({profileNameSelector:'.profile__name', profileAbo
 
 
 //Массив с фото перенесен в файл constants.js
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-37',
+  headers: {
+    authorization: '5ead7841-faa6-4ad8-8b47-2349a55e5a2a',
+    'Content-Type': 'application/json'
+  }
+});
+
 
 function createCard(item) {
   const card = new Card(item, '.cards-template', handleCardClick);

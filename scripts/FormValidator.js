@@ -13,6 +13,7 @@ export class FormValidator {
     //А можно вот так  достать те же ключи внутри функции
     const { inputErrorClass, errorClass } = this._settings;
     const errorContainer = this._form.querySelector(`#error-${inputElement.id}`);
+    console.log(errorContainer);
     inputElement.classList.add(inputErrorClass);
     errorContainer.classList.add(errorClass);
     errorContainer.textContent = inputElement.validationMessage;
@@ -21,6 +22,7 @@ export class FormValidator {
   _hideError(inputElement) {
     const { inputErrorClass, errorClass } = this._settings;
     const errorContainer = this._form.querySelector(`#error-${inputElement.id}`);
+    console.log(errorContainer);
     inputElement.classList.remove(inputErrorClass);
     errorContainer.classList.remove(errorClass);
     errorContainer.textContent = '';

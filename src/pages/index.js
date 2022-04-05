@@ -3,8 +3,7 @@ import './index.css'; // добавьте импорт главного файл
 import { Card } from "../components/Card.js"
 import { FormValidator } from "../components/FormValidator.js";
 import {
-  initialCards,
-  validationConfig
+    validationConfig
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -26,9 +25,13 @@ const avatarButton = document.querySelector('.profile__avatar-edit-btn')
 const addCardForm = addCardModal.querySelector('.popup__form');
 const avatarCardForm = avatarModal.querySelector('.popup__form');
 
+// Изображение аватара
+const avatarImage = document.querySelector('.profile__avatar')
+
 // Поля ввода форм редактирования профиля
 const inputProfileName = document.querySelector('.popup__input_type_username');
 const inputProfileDescription = document.querySelector('.popup__input_type_description');
+const inputProfileAvatar = document.querySelector('.popup__input_avatar_link');
 
 //селектор списка карточек
 const cardListSelector = '.cards__elements';
@@ -47,38 +50,25 @@ const userInfo = new UserInfo({
 let userId;
 
 
-api.getProfile()
-  .then(res => {
-    userInfo.setUserInfo(res.name, res.about, res.avatar)
-    // при первичном запросе информации с сервера
-    //установим значение  userId
-    userId = res._id
-    //console.log('res', res)
-    // console.log(userId)
+Promise.all([api.getInitialCards(), api.getProfile()])
+  .then(([cardListServ, userData]) => {
+    userId = userData._id
+    userInfo.setUserInfo(userData.name, userData.about, userData.avatar)
+    cardListServ.forEach(item => {
+      cardList.addItem(createCard({
+        name: item.name,
+        link: item.link,
+        likes: item.likes,
+        id: item._id,
+        userId: userId,
+        ownerId: item.owner._id
+      }))
+    }
+    )
   })
   .catch((err) => {
-    console.log(err)
+    console.log('Ошибка:', err)
   })
-
-api.getInitialCards()
-  .then(
-    cardListServ => {
-      //console.log('cardListServ', cardListServ),
-      cardListServ.forEach(item => {
-        cardList.addItem(createCard({
-          name: item.name,
-          link: item.link,
-          likes: item.likes,
-          id: item._id,
-          userId: userId,
-          ownerId: item.owner._id
-        })
-        )
-      },
-        //console.log('cardList', cardList)
-      )
-    });
-
 
 
 function createCard(item) {
@@ -89,7 +79,7 @@ function createCard(item) {
       confirmPopup.open()
       confirmPopup.changeSubmitHandler(() => {
         api.deleteCard(id)
-          .then(res => {
+              .then(res => {
             card.delete()
             confirmPopup.close()
           })
@@ -154,16 +144,16 @@ const handleCardFormSubmit = (data) => {
       cardList.addItem(card)
       addCardPopup.close();
     }
-    )
-    .catch((err) => {
+    ).catch((err) => {
       console.log(err)
-    });
+    }).finally(() => {addCardPopup.renderLoading(false)})
 };
 
 
-// Открываем форму для редактирования, подтягиваем в формы для ввода существующие данные
+// Открываем форму для редактирования, подтягиваем в формы
+// для ввода существующие данные
 editProfileButton.addEventListener('click', () => {
-  const { name, job } = userInfo.getUserInfo();
+  const {name, job} = userInfo.getUserInfo();
   inputProfileName.value = name;
   inputProfileDescription.value = job;
   editProfilePopup.open();
@@ -175,28 +165,27 @@ editProfileButton.addEventListener('click', () => {
 const handleAvatarFormSubmit = (data) => {
   const { avatar } = data;
   avatarPopup.renderLoading(true);
-  //console.log('avatar', data)
   api.editAvatar(avatar)
     .then(res => {
-      // console.log(res)
       userInfo.setUserInfo(res.name, res.about, res.avatar)
-    })
-    .catch((err) => {
+      avatarPopup.close()
+    }).catch((err) => {
       console.log(err)
-    });
-  avatarPopup.close()
+    }).finally(() => {avatarPopup.renderLoading(false)})
 }
+
+
+// Функция заменит данные подьзователя
 const handleProfileFormSubmit = (data) => {
-  const { name, description } = data;
-  editProfilePopup.renderLoading(true);
+  const { name, description } = data
+  editProfilePopup.renderLoading(true)
   api.editProfile(name, description)
-    .then(() => {
-      userInfo.setUserInfo(name, description)
-    })
-    .catch((err) => {
+    .then((res) => {
+      userInfo.setUserInfo(name, description, res.avatar)
+      editProfilePopup.close()
+    }).catch((err) => {
       console.log(err)
-    });
-  editProfilePopup.close()
+    }).finally(() => { editProfilePopup.renderLoading(false) })
 };
 
 const imagePopup = new PopupWithImage('.popup_type_image');

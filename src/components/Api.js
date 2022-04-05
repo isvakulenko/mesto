@@ -4,22 +4,27 @@ class Api {
     this._headers = headers
   }
 
+//метод проверяет ответ от сервера:
+  _checkResponse (res) {
+     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+      }
+
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res =>
-        res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch((err) => console.log(err))
+    //передается только ссылка на метод.
+    //Не нужно его вызывать.
+    //Он сам вызовется, так как в then нужно передавать именно функцию,
+    // а не вызов функции.
+    .then(this._checkResponse)
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res =>
-        res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch((err) => console.log(err))
+      .then(this._checkResponse)
   }
 
   editProfile(name, about) {
@@ -31,9 +36,7 @@ class Api {
         about
       })
     })
-      .then(res =>
-        res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch((err) => console.log(err))
+    .then(this._checkResponse)
   }
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -44,9 +47,7 @@ class Api {
         link
       })
     })
-      .then(res =>
-        res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch((err) => console.log(err))
+    .then(this._checkResponse)
   }
 
   deleteCard(id) {
@@ -54,9 +55,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res =>
-        res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch((err) => console.log(err))
+    .then(this._checkResponse)
   }
 
   deleteLike(id) {
@@ -64,18 +63,14 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res =>
-        res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch((err) => console.log(err))
+    .then(this._checkResponse)
   }
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
      method: 'PUT',
      headers: this._headers
    })
-     .then(res =>
-       res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-     .catch((err) => console.log(err))
+   .then(this._checkResponse)
  }
  editAvatar(avatar) {
   return fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -85,9 +80,7 @@ class Api {
       avatar
     })
   })
-  .then(res =>
-    res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-  .catch((err) => console.log(err))
+  .then(this._checkResponse)
 }
 }
 

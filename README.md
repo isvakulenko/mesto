@@ -1,3 +1,4 @@
+<base target="_blank">
 <h1 align="center"><a  href="https://isvakulenko.github.io/mesto/index.html" target="_blank"><img src="https://github.com/isvakulenko/mesto/blob/main/src/images/mesto.PNG" width="100%" alt="Логотип Mesto"></a></h1>
 
 # <a id="top" />Яндекс.Практикум, курс "Веб разработчик плюс".
@@ -26,7 +27,7 @@
 
 ## <a id="github" />Github Page:
 
-* [Ссылка на проект на Github Pages](https://isvakulenko.github.io/mesto/index.html){target="_blank"}
+* [Ссылка на проект на Github Pages](https://isvakulenko.github.io/mesto/index.html)
 
 
 ## <a id="figma" />Макет в Figma:

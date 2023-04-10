@@ -26,7 +26,7 @@
 
 ## <a id="github" />Github Page:
 
-* [Ссылка на проект на Github Pages](https://isvakulenko.github.io/mesto/index.html)
+* [Ссылка на проект на Github Pages](https://isvakulenko.github.io/mesto/index.html){:target="_blank"}
 
 
 ## <a id="figma" />Макет в Figma:
@@ -64,7 +64,7 @@
 
 ## <a id="install" />Установка проекта:
 
-Перейдите в вашу папку для хранения репозиториев. В командной строке вышего  IDE выполните следующую команду клонирования с GitHub:
+Перейдите в вашу папку для хранения репозиториев. В командной строке вашего  IDE выполните следующую команду клонирования с GitHub:
 ```sh
 `$ git clone git@github.com:isvakulenko/mesto.git`
 ```

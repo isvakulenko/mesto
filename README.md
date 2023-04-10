@@ -26,7 +26,7 @@
 
 ## <a id="github" />Github Page:
 
-* [Ссылка на проект на Github Pages](https://isvakulenko.github.io/mesto/index.html){:target="_blank"}
+* [Ссылка на проект на Github Pages](https://isvakulenko.github.io/mesto/index.html){target="_blank"}
 
 
 ## <a id="figma" />Макет в Figma:
